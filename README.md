@@ -1,4 +1,4 @@
-# 🚀 CloudNetOps
+# CloudNetOps
 
 CloudNetOps is an Intelligent Cloud-Based Network Monitoring & Infrastructure Management Platform.
 
