@@ -6,6 +6,7 @@ const logger = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
 
 const healthRoutes = require("./routes/health");
+const authRoutes = require("./routes/auth");
 
 const app = express();
 
@@ -27,8 +28,9 @@ app.get("/", (req, res) => {
 
 // API Routes
 app.use("/api/v1", healthRoutes);
+app.use("/api/v1/auth", authRoutes);
 
-// Global Error Handler (always last)
+// Global Error Handler
 app.use(errorHandler);
 
 module.exports = app;
