@@ -100,7 +100,41 @@
       ],
       "body": {
         "type": "json",
-        "raw": "{\n  \"ip\": \"192.168.1.100\",\n  \"hostname\": \"server-host\",\n  \"status\": \"ONLINE\",\n  \"latency\": 1.5\n}"
+        "raw": "{\n  \"ip\": \"192.168.1.100\",\n  \"hostname\": \"server-host\",\n  \"status\": \"ONLINE\",\n  \"latency\": 1.5,\n  \"macAddress\": \"00:11:22:33:44:55\",\n  \"vendor\": \"Intel Corporate\",\n  \"operatingSystem\": \"Linux\"\n}"
+      }
+    },
+    {
+      "_id": "req_get_device_by_id",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_devices",
+      "name": "Get Device By ID",
+      "url": "http://localhost:5000/api/v1/devices/1",
+      "method": "GET",
+      "sortNum": 45000,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ]
+    },
+    {
+      "_id": "req_update_device",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_devices",
+      "name": "Update Device (Admin Only)",
+      "url": "http://localhost:5000/api/v1/devices/1",
+      "method": "PUT",
+      "sortNum": 55000,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"hostname\": \"server-host-updated\",\n  \"status\": \"ONLINE\",\n  \"latency\": 2.4,\n  \"macAddress\": \"00:11:22:33:44:99\",\n  \"vendor\": \"Intel Corporation\",\n  \"operatingSystem\": \"Windows Server\"\n}"
       }
     },
     {

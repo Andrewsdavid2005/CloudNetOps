@@ -3,8 +3,7 @@ const prisma = require("../config/database");
 // Add Device
 exports.addDevice = async (req, res) => {
     try {
-
-        const { ip, hostname, status, latency } = req.body;
+        const { ip, hostname, status, latency, macAddress, vendor, operatingSystem } = req.body;
 
         const existing = await prisma.device.findUnique({
             where: { ip }
@@ -22,7 +21,10 @@ exports.addDevice = async (req, res) => {
                 ip,
                 hostname,
                 status,
-                latency
+                latency: latency !== undefined ? Number(latency) : null,
+                macAddress,
+                vendor,
+                operatingSystem
             }
         });
 
@@ -33,12 +35,10 @@ exports.addDevice = async (req, res) => {
         });
 
     } catch (error) {
-
         res.status(500).json({
             success: false,
             message: error.message
         });
-
     }
 };
 // Get All Devices
@@ -94,19 +94,19 @@ exports.getDeviceById = async (req, res) => {
 
 // Update Device
 exports.updateDevice = async (req, res) => {
-
     try {
-
         const id = Number(req.params.id);
-
-        const { hostname, status, latency } = req.body;
+        const { hostname, status, latency, macAddress, vendor, operatingSystem } = req.body;
 
         const device = await prisma.device.update({
             where: { id },
             data: {
                 hostname,
                 status,
-                latency
+                latency: latency !== undefined ? Number(latency) : undefined,
+                macAddress,
+                vendor,
+                operatingSystem
             }
         });
 
@@ -117,14 +117,11 @@ exports.updateDevice = async (req, res) => {
         });
 
     } catch (error) {
-
         res.status(500).json({
             success: false,
             message: error.message
         });
-
     }
-
 };
 
 // Delete Device
