@@ -2,15 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 
+// Middleware Imports
 const logger = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
 
+// Route Imports
 const healthRoutes = require("./routes/health");
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 const app = express();
 
-// Middleware
+// Global Middleware
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
@@ -29,6 +32,7 @@ app.get("/", (req, res) => {
 // API Routes
 app.use("/api/v1", healthRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user", userRoutes);
 
 // Global Error Handler
 app.use(errorHandler);
