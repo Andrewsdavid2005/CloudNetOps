@@ -1,0 +1,167 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "CloudNetOps API",
+  "dateExported": "2026-07-01T20:58:00.000Z",
+  "version": "1.1",
+  "folders": [
+    {
+      "_id": "fld_auth",
+      "name": "Authentication",
+      "containerId": ""
+    },
+    {
+      "_id": "fld_devices",
+      "name": "Devices",
+      "containerId": ""
+    },
+    {
+      "_id": "fld_scanner",
+      "name": "Scanner",
+      "containerId": ""
+    },
+    {
+      "_id": "fld_dashboard",
+      "name": "Dashboard & Alerts",
+      "containerId": ""
+    }
+  ],
+  "requests": [
+    {
+      "_id": "req_register",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_auth",
+      "name": "Register User",
+      "url": "http://localhost:5000/api/v1/auth/register",
+      "method": "POST",
+      "sortNum": 10000,
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"username\": \"admin_user\",\n  \"email\": \"admin@cloudnetops.com\",\n  \"password\": \"password123\"\n}"
+      }
+    },
+    {
+      "_id": "req_login",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_auth",
+      "name": "Login User",
+      "url": "http://localhost:5000/api/v1/auth/login",
+      "method": "POST",
+      "sortNum": 20000,
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"admin@cloudnetops.com\",\n  \"password\": \"password123\"\n}"
+      }
+    },
+    {
+      "_id": "req_profile",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_auth",
+      "name": "User Profile",
+      "url": "http://localhost:5000/api/v1/profile",
+      "method": "GET",
+      "sortNum": 30000,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ]
+    },
+    {
+      "_id": "req_get_devices",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_devices",
+      "name": "Get All Devices",
+      "url": "http://localhost:5000/api/v1/devices",
+      "method": "GET",
+      "sortNum": 40000,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ]
+    },
+    {
+      "_id": "req_add_device",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_devices",
+      "name": "Add Device (Admin Only)",
+      "url": "http://localhost:5000/api/v1/devices",
+      "method": "POST",
+      "sortNum": 50000,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"ip\": \"192.168.1.100\",\n  \"hostname\": \"server-host\",\n  \"status\": \"ONLINE\",\n  \"latency\": 1.5\n}"
+      }
+    },
+    {
+      "_id": "req_delete_device",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_devices",
+      "name": "Delete Device (Admin Only)",
+      "url": "http://localhost:5000/api/v1/devices/1",
+      "method": "DELETE",
+      "sortNum": 60000,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ]
+    },
+    {
+      "_id": "req_scan",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_scanner",
+      "name": "Trigger Scan (Admin Only)",
+      "url": "http://localhost:5000/api/v1/scan",
+      "method": "GET",
+      "sortNum": 70000,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ]
+    },
+    {
+      "_id": "req_dashboard",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_dashboard",
+      "name": "Get Dashboard Data",
+      "url": "http://localhost:5000/api/v1/dashboard",
+      "method": "GET",
+      "sortNum": 80000,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ]
+    },
+    {
+      "_id": "req_alerts",
+      "colId": "col_cloudnetops",
+      "containerId": "fld_dashboard",
+      "name": "Get Alerts",
+      "url": "http://localhost:5000/api/v1/alerts",
+      "method": "GET",
+      "sortNum": 90000,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ]
+    }
+  ]
+}
