@@ -10,7 +10,9 @@ const errorHandler = require("./middleware/errorHandler");
 const healthRoutes = require("./routes/health");
 const authRoutes = require("./routes/auth");
 const deviceRoutes = require("./routes/device");
-
+const scanRoutes = require("./routes/scan");
+const userRoutes = require("./routes/user");
+const alertRoutes = require("./routes/alerts");
 const app = express();
 
 // Global Middleware
@@ -33,7 +35,9 @@ app.get("/", (req, res) => {
 app.use("/api/v1", healthRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/devices", deviceRoutes);
-
+app.use("/api/v1/scan", scanRoutes);
+app.use("/api/v1", userRoutes);
+app.use("/api/v1/alerts", alertRoutes);
 // Global Error Handler
 app.use(errorHandler);
 

@@ -65,6 +65,33 @@ exports.getDevices = async (req, res) => {
 
 };
 
+// Get Single Device By ID
+exports.getDeviceById = async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        const device = await prisma.device.findUnique({
+            where: { id }
+        });
+
+        if (!device) {
+            return res.status(404).json({
+                success: false,
+                message: "Device not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            device
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
 // Update Device
 exports.updateDevice = async (req, res) => {
 

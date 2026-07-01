@@ -17,10 +17,32 @@ model User {
 }
 
 model Device {
+  id              Int      @id @default(autoincrement())
+  ip              String   @unique
+  hostname        String?
+  status          String
+  latency         Float?
+  macAddress      String?
+  vendor          String?
+  operatingSystem String?
+  lastSeen        DateTime @default(now())
+  createdAt       DateTime @default(now())
+  alerts          Alert[]
+}
+
+model Alert {
   id        Int      @id @default(autoincrement())
-  ip        String   @unique
-  hostname  String?
-  status    String
-  latency   Float?
+  deviceId  Int
+  device    Device   @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  severity  String   // "LOW", "MEDIUM", "HIGH", "CRITICAL"
+  message   String
   createdAt DateTime @default(now())
+}
+
+model ScanHistory {
+  id           Int      @id @default(autoincrement())
+  scanTime     DateTime @default(now())
+  devicesFound Int
+  duration     Float    // duration in seconds
+  createdAt    DateTime @default(now())
 }

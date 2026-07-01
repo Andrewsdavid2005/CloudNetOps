@@ -7,6 +7,7 @@ const auth = require("../middleware/authMiddleware");
 const {
     addDevice,
     getDevices,
+    getDeviceById,
     updateDevice,
     deleteDevice
 } = require("../controllers/deviceController");
@@ -14,6 +15,8 @@ const {
 router.post("/", auth, addDevice);
 
 router.get("/", auth, getDevices);
+
+router.get("/:id", auth, getDeviceById);
 
 router.put("/:id", auth, updateDevice);
 
