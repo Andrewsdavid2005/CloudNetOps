@@ -13,6 +13,7 @@ const deviceRoutes = require("./routes/device");
 const scanRoutes = require("./routes/scan");
 const userRoutes = require("./routes/user");
 const alertRoutes = require("./routes/alerts");
+const dashboardRoutes = require("./routes/dashboard");
 const app = express();
 
 // Global Middleware
@@ -38,6 +39,7 @@ app.use("/api/v1/devices", deviceRoutes);
 app.use("/api/v1/scan", scanRoutes);
 app.use("/api/v1", userRoutes);
 app.use("/api/v1/alerts", alertRoutes);
+app.use("/api/v1/dashboard", dashboardRoutes);
 // Global Error Handler
 app.use(errorHandler);
 
