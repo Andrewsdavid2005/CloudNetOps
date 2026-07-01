@@ -15,3 +15,12 @@ model User {
   role      String   @default("USER")
   createdAt DateTime @default(now())
 }
+
+model Device {
+  id        Int      @id @default(autoincrement())
+  ip        String   @unique
+  hostname  String?
+  status    String
+  latency   Float?
+  createdAt DateTime @default(now())
+}

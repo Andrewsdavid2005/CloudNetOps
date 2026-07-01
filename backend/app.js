@@ -9,7 +9,7 @@ const errorHandler = require("./middleware/errorHandler");
 // Route Imports
 const healthRoutes = require("./routes/health");
 const authRoutes = require("./routes/auth");
-const userRoutes = require("./routes/user");
+const deviceRoutes = require("./routes/device");
 
 const app = express();
 
@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 // API Routes
 app.use("/api/v1", healthRoutes);
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/devices", deviceRoutes);
 
 // Global Error Handler
 app.use(errorHandler);
