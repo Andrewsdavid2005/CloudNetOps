@@ -1,9 +1,10 @@
 const bcrypt = require("bcryptjs");
 const prisma = require("../config/database");
+const generateToken = require("../utils/jwt");
 
+// Register User
 exports.register = async (req, res) => {
     try {
-
         const { username, email, password } = req.body;
 
         const existingUser = await prisma.user.findFirst({
@@ -32,10 +33,18 @@ exports.register = async (req, res) => {
             }
         });
 
+        const token = generateToken(user);
+
         res.status(201).json({
             success: true,
-            message: "User Registered Successfully",
-            user
+            message: "Registration Successful",
+            token,
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                role: user.role
+            }
         });
 
     } catch (error) {
@@ -46,4 +55,50 @@ exports.register = async (req, res) => {
         });
 
     }
+};
+
+// Login User
+exports.login = async (req, res) => {
+
+    try {
+
+        const { email, password } = req.body;
+
+        const user = await prisma.user.findUnique({
+            where: { email }
+        });
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid password"
+            });
+        }
+
+        const token = generateToken(user);
+
+        res.json({
+            success: true,
+            message: "Login Successful",
+            token
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
 };
