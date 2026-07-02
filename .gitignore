@@ -1,18 +1,41 @@
-# Node
 node_modules/
-
-# Environment
 .env
-
-# Logs
-logs/
-
-# Build
-dist/
-
-# OS
+.env.local
 .DS_Store
-Thumbs.db
-
-# VS Code
+dist/
+build/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache
+.log
+pids
+*.pid
+*.seed
+*.pid.lock
+.idea/
 .vscode/
+*.swo
+*.swp
+*.swn
+*.swm
+*.swt
+*.swg
+*.swb
+*.sass-cache
+*.tmp
+*.temp
+*.cache
+*.log
+*.log.*
+*.gz
+*.zip
+*.tar
+*.tgz
+*.bak
+*.old
+*.swp
+*.swo
+*.swn

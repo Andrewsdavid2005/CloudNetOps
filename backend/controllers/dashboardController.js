@@ -14,6 +14,11 @@ exports.getDashboardData = async (req, res) => {
             where: { status: "OFFLINE" }
         });
         const totalAlerts = await prisma.alert.count();
+        const avgLatencyResult = await prisma.device.aggregate({
+            _avg: { latency: true },
+            where: { status: "ONLINE" }
+        });
+        const averageLatency = avgLatencyResult._avg.latency || 0;
 
         // 2. Chart Distributions
         // A. OS distribution
@@ -101,7 +106,8 @@ exports.getDashboardData = async (req, res) => {
                 totalDevices,
                 onlineDevices,
                 offlineDevices,
-                totalAlerts
+                totalAlerts,
+                averageLatency
             },
             charts: {
                 statusDistribution: [

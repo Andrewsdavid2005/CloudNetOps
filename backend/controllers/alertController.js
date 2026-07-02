@@ -1,5 +1,5 @@
 const prisma = require("../config/database");
-
+const { sendAlertEmail } = require('../utils/email');
 /**
  * Get all alerts, sorted by latest first, including the related device details.
  */
